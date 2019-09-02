@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { EnvironmentPlugin } = require("webpack");
 
 let publicPath = "/";
 
@@ -42,7 +43,8 @@ module.exports = (env, argv) => {
           from: "node_modules/sanitize.css/sanitize.css",
           to: "vendor/"
         }
-      ])
+      ]),
+      new EnvironmentPlugin(["STRIPE_API_KEY"])
     ],
     devtool: mode === "development" ? "source-map" : false,
     devServer: {
