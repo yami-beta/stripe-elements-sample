@@ -51,7 +51,10 @@ module.exports = (env, argv) => {
       contentBase: path.join(__dirname, "dist"),
       historyApiFallback: true,
       watchContentBase: true,
-      compress: true
+      compress: true,
+      proxy: {
+        "/charge": "http://localhost:3000"
+      }
     }
   };
 };
