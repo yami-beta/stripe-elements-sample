@@ -8,8 +8,10 @@
     "lint:eslint": "eslint --ext ts,tsx,js .",
     "lint": "run-p lint:*",
     "watch:server": "ts-node src/server.ts",
+    "build_dev:client": "webpack --mode development",
     "build:client": "webpack --mode production",
     "watch:client": "webpack-dev-server --mode development",
+    "build_dev": "run-p build_dev:*",
     "build": "run-p build:*",
     "watch": "run-p watch:*"
   },
