@@ -10,14 +10,20 @@ app.use(express.text());
 
 app.post("/charge", async (req, res) => {
   try {
-    let { status } = await stripe.charges.create({
-      amount: 50,
-      currency: "jpy",
-      description: "An example charge",
-      source: req.body
+    // Create a Customer:
+    const customer = await stripe.customers.create({
+      source: req.body,
+      email: `user.${Date.now()}@example.com`
     });
 
-    res.json({ status });
+    // Charge the Customer instead of the card:
+    const charge = await stripe.charges.create({
+      amount: 50,
+      currency: "jpy",
+      customer: customer.id
+    });
+
+    res.json({ status: charge.status });
   } catch (err) {
     console.error(err);
     res.status(500).end();
