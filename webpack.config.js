@@ -42,6 +42,10 @@ module.exports = (env, argv) => {
         {
           from: "node_modules/sanitize.css/sanitize.css",
           to: "vendor/"
+        },
+        {
+          from: "src/apple-developer-merchantid-domain-association",
+          to: ".well-known"
         }
       ]),
       new EnvironmentPlugin(["STRIPE_API_KEY"])
